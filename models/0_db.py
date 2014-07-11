@@ -63,7 +63,7 @@ auth = Auth(db)
 
 ## define extra fields for auth_* tables
 auth.settings.extra_fields['auth_user'] = [
-    Field('google_cloud_messaging_id', 'string', readable=False, writable=False),
+    Field('gcm_id', 'string', readable=False, writable=False),
     Field('login_count', 'integer', uploadfield=False, readable=False, writable=False, default=0),
     Field('logged_in_on', 'datetime', uploadfield=False, readable=False, writable=False, default=None),
     auth.signature
@@ -73,7 +73,7 @@ auth.define_tables(username=True, signature=True)
 
 db.auth_user.first_name.readable = db.auth_user.first_name.writable = False
 db.auth_user.last_name.readable = db.auth_user.last_name.writable = False
-db.auth_user.first_name.readable = db.auth_user.first_name.writable = False
+db.auth_user.email.readable = db.auth_user.email.writable = False
 
 ###
 ### Settings Tables
