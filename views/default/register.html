@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+    <head>
+        <title>Sup</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="index,follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="{{=URL('static', 'images/favicon.ico')}}" type="image/x-icon">
+        <link rel="apple-touch-icon" href="{{=URL('static', 'images/favicon.ico')}}">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel='stylesheet' id='open-sans-css' href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=3.9' type='text/css' media='all' />
+        <!-- <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{=URL('static', 'css/main.css')}}">
+    </head>
+
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+		<div class="container-fluid">
+            <div class="center-block">
+		        {{=form}}
+            </div>
+		</div>
+
+        <!-- JQUERY ================================================== -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+        <!-- BOOTSTRAP ================================================== -->
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <!-- PHONEGAP ================================================== -->
+        <script type="text/javascript" src="{{=URL('static', 'js/phonegap/cordova.js')}}"></script>
+        <script type="text/javascript" src="{{=URL('static', 'js/phonegap/index.js')}}"></script>
+        <script type="text/javascript" src="{{=URL('static', 'js/phonegap/device.js')}}"></script>
+        <script type="text/javascript" src="{{=URL('static', 'js/phonegap/PushNotification.js')}}"></script>
+
+        <script>
+
+            function processForm(e) {
+
+                e.preventDefault();
+
+                var pushNotification = window.plugins.pushNotification;
+                pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"649293780544","ecb":"app.onNotificationGCM"});
+
+                return false; // Must return false to prevent the default form behavior
+            }
+
+            var form = document.getElementById("form_registration");
+
+            if (form.attachEvent) {
+                form.attachEvent("submit", processForm);
+            } else {
+                form.addEventListener("submit", processForm);
+            }
+
+        </script>
+
+        <script>
+
+            window.app.successHandler = function(result) {
+                // alert("Callback Success! Result = " + result);
+            };
+
+            window.app.errorHandler = function(error) {
+                // alert(error);
+            };
+
+            window.app.onNotificationGCM = function(e) {
+                switch (e.event) {
+
+                    case "registered":
+                        if (e.regid.length > 0) {
+
+                            // alert("registration id = " + e.regid);
+
+                            if (device.platform == "Android") {
+                                window.app.gcm_id = e.regid;
+                            } else if (device.platform == "iOS") {
+                                window.app.apn_id = e.regid;
+                            }
+
+                            var form = document.getElementById("form_registration");
+                            var inputGcmId = document.createElement("input");
+                            var inputDevicePlatform = document.createElement("input");
+
+                            inputGcmId.type = "hidden";
+                            inputGcmId.name = "gcm_id";
+                            inputGcmId.value = window.app.gcm_id;
+
+                            inputDevicePlatform.type = "hidden";
+                            inputDevicePlatform.name = "device_platform";
+                            inputDevicePlatform.value = device.platform;
+
+                            form.appendChild(inputGcmId);
+                            form.appendChild(inputDevicePlatform);
+                            form.submit();
+                        }
+                        break;
+
+                    case "message":
+                        // this is the actual push notification. its format depends on the data model from the push server
+                        alert("message = " + e.message + " msgcnt = " + e.msgcnt);
+                        break;
+
+                    case "error":
+                        alert("GCM error = " + e.msg);
+                        break;
+
+                    default:
+                        alert("An unknown GCM event has occurred");
+                        break;
+                }
+            };
+
+        </script>
+
+    </body>
+
+</html>

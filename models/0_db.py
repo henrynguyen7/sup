@@ -63,7 +63,9 @@ auth = Auth(db)
 
 ## define extra fields for auth_* tables
 auth.settings.extra_fields['auth_user'] = [
+    Field('device_platform', 'string', readable=False, writable=False),
     Field('gcm_id', 'string', readable=False, writable=False),
+    Field('apn_id', 'string', readable=False, writable=False),
     Field('login_count', 'integer', uploadfield=False, readable=False, writable=False, default=0),
     Field('logged_in_on', 'datetime', uploadfield=False, readable=False, writable=False, default=None),
     auth.signature
