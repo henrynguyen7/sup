@@ -29,7 +29,7 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
-		<div class="container-fluid">
+		<div id="deviceready" class="container-fluid">
             <div class="center-block">
 		        {{=form}}
                 <a class="btn btn-default" href="/sup/default/index/register">Register</a>
@@ -46,9 +46,11 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
         <!-- PHONEGAP ================================================== -->
-        <script type="text/javascript" src="{{=URL('static', 'js/phonegap/android/phonegap.js')}}"></script>
+        <script type="text/javascript" src="{{=URL('static', 'js/phonegap/cordova.js')}}"></script>
         <script type="text/javascript" src="{{=URL('static', 'js/phonegap/index.js')}}"></script>
+        <script type="text/javascript" src="{{=URL('static', 'js/phonegap/device.js')}}"></script>
         <script type="text/javascript" src="{{=URL('static', 'js/phonegap/PushNotification.js')}}"></script>
+
         <script type="text/javascript">
             app.initialize();
         </script>

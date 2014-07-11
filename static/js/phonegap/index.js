@@ -37,12 +37,13 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+        var pushNotification = window.plugins.pushNotification;
+        pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"649293780544","ecb":"app.onNotificationGCM"});
+        alert(device.platform);
+
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
-
-        var pushNotification = window.plugins.pushNotification;
-        pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"649293780544","ecb":"app.onNotificationGCM"});
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
@@ -63,16 +64,16 @@ var app = {
                     console.log("Regid " + e.regid);
                     alert("registration id = " + e.regid);
                 }
-            break;
+                break;
 
             case "message":
                 // this is the actual push notification. its format depends on the data model from the push server
                 alert("message = " + e.message + " msgcnt = " + e.msgcnt);
-            break;
+                break;
 
             case "error":
                 alert("GCM error = " + e.msg);
-            break;
+                break;
 
             default:
                 alert("An unknown GCM event has occurred");
