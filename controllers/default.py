@@ -38,3 +38,7 @@ def register():
     form['_id'] = 'form_registration' # So we can select it with Javascript
 
     return dict(form=form)
+
+
+def user():
+    redirect(URL('index'))

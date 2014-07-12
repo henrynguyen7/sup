@@ -26,65 +26,60 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener("deviceready", this.onDeviceReady, false);
+    },
+    // Process any received events.
+    receivedEvent: function(id) {
+        console.log("Received Event: " + id);
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-
-        function savePreferences(e) {
-
-            e.preventDefault();
-
-            var form = document.getElementById("form_login");
-            var preference = window.plugins.appPreferences;
-
-            preference.store(app.onPreferenceSuccess, app.onPreferenceFailure, "username", form.elements["username"].value);
-            preference.store(app.onPreferenceSuccess, app.onPreferenceFailure, "password", form.elements["password"].value);
-
-            form.submit();
-
-            return false; // Must return false to prevent the default form behavior
-        }
+        app.receivedEvent("deviceready");
+    },
+    onLoginPage: function() {
 
         var form = document.getElementById("form_login");
         var preference = window.plugins.appPreferences;
 
-        if (preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "password") != "" &&
-            preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "password") != null) {
+        if (form !== undefined && form !== null) {
 
-            form.elements["username"].value = preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "username");
-            form.elements["password"].value = preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "password");
-            form.submit();
+            if (preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "password") !== "" &&
+                preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "password") !== undefined) {
 
-        } else {
+                form.elements["username"].value = preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "username");
+                form.elements["password"].value = preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "password");
+                form.submit();
 
-            var form = document.getElementById("form_login");
-
-            if (form.attachEvent) {
-                form.attachEvent("submit", savePreferences);
             } else {
-                form.addEventListener("submit", savePreferences);
+
+                if (form.attachEvent) {
+                    form.attachEvent("submit", app.savePreferences);
+                } else {
+                    form.addEventListener("submit", app.savePreferences);
+                }
             }
         }
     },
-    receivedEvent: function(id) {
-        console.log("Received Event: " + id);
+    savePreferences: function(e) {
+        var form = document.getElementById("form_login");
+        var preference = window.plugins.appPreferences;
+        preference.store(app.onPreferenceSuccess, app.onPreferenceFailure, "username", form.elements["username"].value);
+        preference.store(app.onPreferenceSuccess, app.onPreferenceFailure, "password", form.elements["password"].value);
     },
     onPreferenceSuccess: function(result) {
         console.log("onPreferenceSuccess! Result = " + result);
     },
     onPreferenceFailure: function(error) {
-        console.log(error);
+        console.log("onPreferenceFailure! Error = " + error);
     },
     onPushSuccess: function(result) {
         console.log("onPushSuccess! Result = " + result);
     },
     onPushFailure: function(error) {
-        console.log(error);
+        console.log("onPushFailure! Error = " + error);
     },
     onNotificationGCM: function(e) {
 
@@ -93,8 +88,6 @@ var app = {
             case "registered":
 
                 if (e.regid.length > 0) {
-
-                    // alert("registration id = " + e.regid);
 
                     if (device.platform == "Android") {
                         window.app.gcm_id = e.regid;
