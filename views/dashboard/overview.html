@@ -1,16 +1,13 @@
+{{extend 'layout.html'}}
 
-<div class="container-fluid">
-
-    <div class="pull-right">
-        <a href="{{=URL('dashboard', 'settings')}}">Settings</a>
-        <a href="{{=URL('dashboard', 'logout')}}">Log out</a>
-    </div>
-
-    <ul class="list-group">
-        {{=response.flash}}
-        {{for user in users:}}
-            <li><a href="/sup/dashboard/overview/{{=user.id}}">{{=user.id}} {{=user.username}}</a></li>
-        {{pass}}
-    </ul>
-
+<div class="pull-right">
+    <a href="{{=URL('dashboard', 'settings')}}">Settings</a>
+    <a href="{{=URL('dashboard', 'logout')}}">Log out</a>
 </div>
+
+<ul class="list-group">
+    {{=response.flash}}
+    {{for user in users:}}
+        <li><a href="/sup/dashboard/overview/{{=user.id}}">{{=user.id}} {{=user.username}}</a></li>
+    {{pass}}
+</ul>
