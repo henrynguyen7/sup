@@ -34,23 +34,57 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+        function savePreferences(e) {
+
+            e.preventDefault();
+
+            var form = document.getElementById("form_login");
+            var preference = window.plugins.appPreferences;
+
+            preference.store(app.onPreferenceSuccess, app.onPreferenceFailure, "username", form.elements["username"].value);
+            preference.store(app.onPreferenceSuccess, app.onPreferenceFailure, "password", form.elements["password"].value);
+
+            form.submit();
+
+            return false; // Must return false to prevent the default form behavior
+        }
+
+        var form = document.getElementById("form_login");
+        var preference = window.plugins.appPreferences;
+
+        if (preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "password") != "" &&
+            preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "password") != null) {
+
+            form.elements["username"].value = preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "username");
+            form.elements["password"].value = preference.fetch(app.onPreferenceSuccess, app.onPreferenceFailure, "password");
+            form.submit();
+
+        } else {
+
+            var form = document.getElementById("form_login");
+
+            if (form.attachEvent) {
+                form.attachEvent("submit", savePreferences);
+            } else {
+                form.addEventListener("submit", savePreferences);
+            }
+        }
     },
-    // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+        console.log("Received Event: " + id);
     },
-    successHandler: function(result) {
-        // alert("Callback Success! Result = " + result);
+    onPreferenceSuccess: function(result) {
+        console.log("onPreferenceSuccess! Result = " + result);
     },
-    errorHandler: function(error) {
-        // alert(error);
+    onPreferenceFailure: function(error) {
+        console.log(error);
+    },
+    onPushSuccess: function(result) {
+        console.log("onPushSuccess! Result = " + result);
+    },
+    onPushFailure: function(error) {
+        console.log(error);
     },
     onNotificationGCM: function(e) {
 

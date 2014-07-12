@@ -13,8 +13,10 @@ def index():
         return dict()
 
     auth.settings.login_onaccept = login_onaccept
+    form = auth()
+    form['_id'] = 'form_login' # So we can select it with Javascript
 
-    return dict(form=auth())
+    return dict(form=form)
 
 
 def register():

@@ -11,7 +11,7 @@
         e.preventDefault();
 
         var pushNotification = window.plugins.pushNotification;
-        pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"649293780544","ecb":"app.onNotificationGCM"});
+        pushNotification.register(app.onPushSuccess, app.onPushFailure,{"senderID":"649293780544","ecb":"app.onNotificationGCM"});
 
         return false; // Must return false to prevent the default form behavior
     }
