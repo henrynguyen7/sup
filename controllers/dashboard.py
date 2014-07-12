@@ -18,7 +18,8 @@ def overview():
     users = db(db.auth_user.device_platform != None).select()
     if request.args:
         result = Utils.send_sup(request.args[0])
-        response.flash = "Sup sent!"
+        response.flash = 'Sup sent to ' + Utils.get_user(auth_user_id=request.args[0]).get('username') + '!'
+
     return dict(users=users)
 
 
