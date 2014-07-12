@@ -13,6 +13,7 @@ def index():
         return dict()
 
     auth.settings.login_onaccept = login_onaccept
+    auth.settings.remember_me_form = False
     form = auth()
     form['_id'] = 'form_login' # So we can select it with Javascript
 
