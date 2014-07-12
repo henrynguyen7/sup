@@ -8,13 +8,13 @@ Author: Henry Nguyen (henry@dxconcept.com)
 
 from gcmclient import *
 
+
+def logout():
+    auth.logout()
+
+
 @auth.requires_login()
 def index():
-    redirect(URL('overview'))
-
-
-@auth.requires_login()
-def overview():
     users = db(db.auth_user.device_platform != None).select()
     if request.args:
         result = Utils.send_sup(request.args[0])

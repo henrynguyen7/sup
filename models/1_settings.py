@@ -33,10 +33,10 @@ response.generic_patterns = ['*'] if request.is_local else []
 ###
 auth.settings.password_min_length = 8
 auth.settings.create_user_groups = False
-auth.settings.login_next = URL('dashboard', 'overview')
-auth.settings.logout_next = URL('index')
+auth.settings.login_next = URL('dashboard', 'index')
+auth.settings.logout_next = URL('default', 'index')
 auth.settings.profile_next = URL('index')
-auth.settings.register_next = URL('dashboard', 'overview')
+auth.settings.register_next = URL('dashboard', 'index')
 auth.settings.retrieve_username_next = URL('index')
 auth.settings.retrieve_password_next = URL('index')
 auth.settings.change_password_next = URL('index')
