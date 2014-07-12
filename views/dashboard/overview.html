@@ -7,9 +7,9 @@
     </div>
 
     <ul class="list-group">
+        {{=response.flash}}
         {{for user in users:}}
-            <!-- TODO: THIS IS BROKEN... not setting user.id in args -->
-            <li><a href="{{=URL('dashboard', 'send_sup', args='=user.id')}}">{{=user.id}} {{=user.username}}</a></li>
+            <li><a href="/sup/dashboard/overview/{{=user.id}}">{{=user.id}} {{=user.username}}</a></li>
         {{pass}}
     </ul>
 

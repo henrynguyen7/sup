@@ -16,18 +16,15 @@ def index():
 @auth.requires_login()
 def overview():
     users = db(db.auth_user.device_platform != None).select()
+    if request.args:
+        result = Utils.send_sup(request.args[0])
+        response.flash = "Sup sent!"
     return dict(users=users)
 
 
 @auth.requires_login()
 def settings():
     return dict(message=None)
-
-
-@auth.requires_login()
-def send_sup():
-    result = Utils.send_sup(request.args[0])
-    return dict(message=result)
 
 
 ##
