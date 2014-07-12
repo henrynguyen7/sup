@@ -40,13 +40,16 @@ class Utils(object):
         return user.as_dict() if user else None
 
     @staticmethod
-    def send_sup(auth_user_id):
+    def send_sup(recipient_auth_user_id):
 
-        user = Utils.get_user(auth_user_id=auth_user_id)
+        recipient = Utils.get_user(auth_user_id=recipient_auth_user_id)
 
-        if user.get('device_platform') == 'Android':
+        if recipient.get('device_platform') == 'Android':
 
-            Utils.send_gcm_message(auth_user_id=auth_user_id)
+            Utils.send_gcm_message(
+                sender_auth_user_id=auth.user.id,
+                recipient_auth_user_id=recipient_auth_user_id
+            )
 
         elif user.get('device_platform') == 'iOS':
 
@@ -55,7 +58,7 @@ class Utils(object):
 
 
     @staticmethod
-    def send_gcm_message(auth_user_id):
+    def send_gcm_message(sender_auth_user_id, recipient_auth_user_id):
 
         try:
             resource_file = os.path.join(current.request.folder, "private", "resources.json")
@@ -63,12 +66,13 @@ class Utils(object):
                 resource_data = json.load(resource)
 
             API_KEY = resource_data["gcm"]["api_key"]
-            user = Utils.get_user(auth_user_id=auth_user_id)
             gcm = GCM(API_KEY)
+            sender = Utils.get_user(auth_user_id=sender_auth_user_id)
+            recipient = Utils.get_user(auth_user_id=recipient_auth_user_id)
 
             multicast = JSONMessage(
-                [user.get('gcm_id')],
-                {"message":"Sup"},
+                [recipient.get('gcm_id')],
+                {"message": "Sup from " + sender.get('username')},
                 collapse_key='collapse_key',
                 dry_run=False if request.is_local else False
             )
