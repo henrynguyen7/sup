@@ -3,8 +3,21 @@
 <ul>
     <li><a href="{{=URL('dashboard', 'settings')}}">Settings</a></li>
     <li><a href="{{=URL('dashboard', 'logout')}}">Log out</a></li>
+    <li><a href="{{=URL('dashboard', 'invite')}}">Invite</a></li>
+    {{for user in users:}}
+    <li>
+        <a href="/sup/dashboard/index/{{=user.id}}">
+        {{if request.args:}}
+            {{if (user.id == request.args):}}
+                {{=response.flash}}
+            {{else:}}
+                {{=user.username}}
+            {{pass}}
+        {{else:}}
+            {{=user.username}}
+        {{pass}}
+        </a>
+    </li>
+    {{pass}}
+    <li><a href="{{=URL('dashboard', 'add_friend')}}">+</a></li>
 </ul>
-
-{{for user in users:}}
-    <li><a href="/sup/dashboard/index/{{=user.id}}">{{=user.username}} {{if (user.id == request.args[0]):}}{{=response.flash}}{{pass}}</a></li>
-{{pass}}
