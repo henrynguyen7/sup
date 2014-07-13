@@ -18,6 +18,7 @@ def index():
     users = db(db.auth_user.device_platform != None).select()
     if request.args:
         result = Utils.send_sup(request.args[0])
+        db(db.auth_user.id == request.args[0]).update(sup_count=db.auth_user.sup_count+1) # Increment user's sup_count
         response.flash = 'Sup sent to ' + Utils.get_user(auth_user_id=request.args[0]).get('username') + '!'
 
     return dict(users=users)

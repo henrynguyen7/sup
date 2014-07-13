@@ -6,12 +6,7 @@
     <div class="st-pusher">
 
         <ul id="content" class="st-content">
-            <li><a href="{{=URL('dashboard', 'invite')}}">Invite</a></li>
-            <li><a>Test</a></li>
-            <li><a>Test</a></li>
-            <li><a>Test</a></li>
-            <li><a>Test</a></li>
-
+            <li><a>Invite</a></li>
             {{for user in users:}}
             <li>
                 <a href="/sup/dashboard/index/{{=user.id}}">
@@ -27,7 +22,7 @@
                 </a>
             </li>
             {{pass}}
-            <li><a href="{{=URL('dashboard', 'add_friend')}}">+</a></li>
+            <li><a>+</a></li>
         </ul>
 
         <div id="st-trigger-effects">
@@ -36,11 +31,11 @@
 
         <ul id="menu" class="st-menu st-effect">
             <li><a>User:{{=auth.user.username}}</a></li>
-            <li><a href="{{=URL('dashboard', 'settings')}}">Invite</a></li>
-            <li><a href="{{=URL('dashboard', 'settings')}}">Unblock</a></li>
-            <li><a>Sups: #</a></li>
+            <li><a>Invite</a></li>
+            <li><a>Unblock</a></li>
+            <li><a>Sups:{{=auth.user.sup_count}}</a></li>
             <li><a href="{{=URL('dashboard', 'logout')}}">Log out</a></li>
-            <li><a href="{{=URL('dashboard', 'settings')}}">+</a></li>
+            <li><a>+</a></li>
             <li id="menu-item-done"><a>Done</a></li>
         </ul>
 
