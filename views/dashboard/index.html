@@ -5,7 +5,7 @@
     <!-- content push wrapper -->
     <div class="st-pusher">
 
-        <ul class="st-content">
+        <ul id="content" class="st-content">
             <li><a href="{{=URL('dashboard', 'invite')}}">Invite</a></li>
             <li><a>Test</a></li>
             <li><a>Test</a></li>
@@ -34,14 +34,14 @@
             <button class="pull-right" data-effect="st-effect">...</button>
         </div>
 
-        <ul class="st-menu st-effect">
-            <li><a>User: #</a></li>
+        <ul id="menu" class="st-menu st-effect">
+            <li><a>User:{{=auth.user.username}}</a></li>
             <li><a href="{{=URL('dashboard', 'settings')}}">Invite</a></li>
             <li><a href="{{=URL('dashboard', 'settings')}}">Unblock</a></li>
-            <li><a>Yo's: #</a></li>
+            <li><a>Sups: #</a></li>
             <li><a href="{{=URL('dashboard', 'logout')}}">Log out</a></li>
             <li><a href="{{=URL('dashboard', 'settings')}}">+</a></li>
-            <li id="menu_done"><a>Done</a></li>
+            <li id="menu-item-done"><a>Done</a></li>
         </ul>
 
     </div><!-- /st-pusher -->

@@ -21,7 +21,7 @@ body,
 }
 
 body {
-    background-color: rgb(153, 87, 159);
+    background-color: rgb(140, 68, 171);
     padding: 0;
     margin: 0;
     text-transform: uppercase;
@@ -58,6 +58,37 @@ body {
     opacity: 0;
     -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
     transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+
+/** LIST ITEMS, BY ORDER
+*=======================================*/
+
+.li-0 {
+    background-color: rgb(26, 186, 154);
+}
+
+.li-1 {
+    background-color: rgb(47, 204, 112);
+}
+
+.li-2 {
+    background-color: rgb(52, 151, 217);
+}
+
+.li-3 {
+    background-color: rgb(51, 72, 92);
+}
+
+.li-4 {
+    background-color: rgb(22, 158, 131);
+}
+
+.li-5 {
+    background-color: rgb(240, 195, 17);
+}
+
+.li-6 {
+    background-color: rgb(42, 129, 184);
 }
 
 /** DASHBOARD LIST
@@ -114,7 +145,7 @@ a:hover {
     height: 40px;
     margin-right: 24px;
     margin-bottom: 24px;
-    background-color: red;
+    background-color: rgb(232, 74, 53);
     font-color: white;
 }
 

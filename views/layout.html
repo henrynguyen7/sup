@@ -52,14 +52,43 @@
         <script type="text/javascript" src="{{=URL('static', 'js/apppreferences.js')}}"></script>
         <script type="text/javascript" src="{{=URL('static', 'js/PushNotification.js')}}"></script>
         <script type="text/javascript">
+
+            TOTAL_LI_CLASSES = 7; //As listed in main.css "li-#" classes
+
             app.initialize();
 
             // TODO: There should be a nicer way to do this...
-            var done_button = document.getElementById("menu_done");
+            var done_button = document.getElementById("menu-item-done");
             done_button.onclick = function(){
                 var container = document.getElementById('st-container');
                 classie.remove(container, 'st-menu-open');
             };
+
+            // TODO: Cleanup...
+            var contentUl = document.getElementById("content");
+            var contentItems = contentUl.getElementsByTagName("li");
+            var j = 0;
+            for (var i = 0; i < contentItems.length; ++i) {
+                contentItems[i].className += "li-" + j;
+                if (j < TOTAL_LI_CLASSES - 1) {
+                    j = ++j;
+                } else {
+                    j = 0;
+                }
+            }
+
+            // TODO: Cleanup...
+            var menuUl = document.getElementById("menu");
+            var menuItems = menuUl.getElementsByTagName("li");
+            j = 0;
+            for (var i = 0; i < menuItems.length; ++i) {
+                menuItems[i].className += "li-" + j;
+                if (j < TOTAL_LI_CLASSES - 1) {
+                    j = ++j;
+                } else {
+                    j = 0;
+                }
+            }
         </script>
 
     </body>
