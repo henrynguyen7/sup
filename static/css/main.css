@@ -16,16 +16,22 @@ body,
     height: 100vh;
 }
 
-.st-content {
-    height: 100%;
-}
-
 body {
     background-color: rgb(140, 68, 171);
     padding: 0;
     margin: 0;
     text-transform: uppercase;
     font-weight: 1000;
+}
+
+.st-content {
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
 }
 
 .container-fluid {
@@ -94,15 +100,6 @@ body {
 /** DASHBOARD LIST
 *=======================================*/
 
-.st-content {
-    position: fixed;
-    overflow: auto;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-}
-
 ul {
     padding: 0;
     margin: 0;
@@ -135,7 +132,7 @@ a:hover {
 /** DASHBOARD MENU BUTTON
 *=======================================*/
 
-#st-trigger-effects button {
+.st-trigger button {
     border-radius: 100%;
     border-style: none;
     position: fixed;
@@ -149,17 +146,17 @@ a:hover {
     font-color: white;
 }
 
-/** MENU
+/** MENUS
 *=======================================*/
 
-.st-menu-open .st-pusher::after {
+.st-menu-right-open .st-pusher::after {
     width: 100%;
     height: 100%;
     -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s;
 }
 
-.st-menu {
+.st-menu-right {
     overflow: auto;
     position: absolute;
     top: 0;
@@ -171,12 +168,41 @@ a:hover {
     transition: all 0.5s;
 }
 
-.st-menu::after {
+.st-menu-right::after {
     -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s;
 }
 
-.st-menu-open .st-menu::after {
+.st-menu-right-open .st-menu-right::after {
+    -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+    transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+
+.st-menu-bottom-open .st-pusher::after {
+    width: 100%;
+    height: 100%;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+.st-menu-bottom {
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.st-menu-bottom::after {
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+.st-menu-bottom-open .st-menu-bottom::after {
     -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
     transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
 }
@@ -184,17 +210,49 @@ a:hover {
 /** EFFECTS
 *=======================================*/
 
-.st-effect.st-menu-open .st-pusher {
+.st-effect-right-register.st-menu-right-register-open .st-pusher {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+}
+
+.st-effect-right-register.st-menu-right-register {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+}
+
+.st-effect-right-register.st-menu-right-register-open .st-effect-right-register.st-menu-right-register {
+    visibility: visible;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+}
+
+.st-effect-right.st-menu-right-open .st-pusher {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+}
+
+.st-effect-right.st-menu-right {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+}
+
+.st-effect-right.st-menu-right-open .st-effect-right.st-menu-right {
+    visibility: visible;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+}
+
+.st-effect-bottom.st-menu-bottom-open .st-pusher {
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
 }
 
-.st-effect.st-menu {
+.st-effect-bottom.st-menu-bottom {
     -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, -100%, 0);
 }
 
-.st-effect.st-menu-open .st-effect.st-menu {
+.st-effect-bottom.st-menu-bottom-open .st-effect-bottom.st-menu-bottom {
     visibility: visible;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;

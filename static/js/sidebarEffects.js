@@ -27,30 +27,61 @@
 
 	function init() {
 
-		var container = document.getElementById( 'st-container' ),
-			buttons = Array.prototype.slice.call( document.querySelectorAll( '#st-trigger-effects > button' ) ),
+		// TODO: Cleanup...
+		var containerDefault = document.getElementById( 'st-container-default' ),
+			buttonsDefault = Array.prototype.slice.call( document.querySelectorAll( '.st-trigger > a' ) ),
 			// event type (if mobile use touch events)
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
 			resetMenu = function() {
-				classie.remove( container, 'st-menu-open' );
+				classie.remove( containerDefault, 'st-menu-right-open' );
 			},
 			bodyClickFn = function(evt) {
-				if( !hasParentClass( evt.target, 'st-menu' ) ) {
+				if( !hasParentClass( evt.target, 'st-menu-right' ) ) {
 					resetMenu();
 					document.removeEventListener( eventtype, bodyClickFn );
 				}
 			};
 
-		buttons.forEach( function( el, i ) {
+		buttonsDefault.forEach( function( el, i ) {
 			var effect = el.getAttribute( 'data-effect' );
 
 			el.addEventListener( eventtype, function( ev ) {
 				ev.stopPropagation();
 				ev.preventDefault();
-				container.className = 'st-container'; // clear
-				classie.add( container, effect );
+				containerDefault.className = 'st-container'; // clear
+				classie.add( containerDefault, effect );
 				setTimeout( function() {
-					classie.add( container, 'st-menu-open' );
+					classie.add( containerDefault, 'st-menu-right-open' );
+				}, 25 );
+				document.addEventListener( eventtype, bodyClickFn );
+			});
+		} );
+
+		// TODO: Cleanup...
+		var containerDashboard = document.getElementById( 'st-container-dashboard' ),
+			buttonsDashboard = Array.prototype.slice.call( document.querySelectorAll( '.st-trigger > button' ) ),
+			// event type (if mobile use touch events)
+			eventtype = mobilecheck() ? 'touchstart' : 'click',
+			resetMenu = function() {
+				classie.remove( containerDashboard, 'st-menu-bottom-open' );
+			},
+			bodyClickFn = function(evt) {
+				if( !hasParentClass( evt.target, 'st-menu-bottom' ) ) {
+					resetMenu();
+					document.removeEventListener( eventtype, bodyClickFn );
+				}
+			};
+
+		buttonsDashboard.forEach( function( el, i ) {
+			var effect = el.getAttribute( 'data-effect' );
+
+			el.addEventListener( eventtype, function( ev ) {
+				ev.stopPropagation();
+				ev.preventDefault();
+				containerDashboard.className = 'st-container'; // clear
+				classie.add( containerDashboard, effect );
+				setTimeout( function() {
+					classie.add( containerDashboard, 'st-menu-bottom-open' );
 				}, 25 );
 				document.addEventListener( eventtype, bodyClickFn );
 			});

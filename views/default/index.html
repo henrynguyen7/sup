@@ -1,17 +1,17 @@
 {{extend 'layout.html'}}
 
-<div id="st-container-intro" class="st-container">
+<div id="st-container-default" class="st-container">
 
     <!-- content push wrapper -->
     <div class="st-pusher">
 
-        <ul id="intro" class="st-content">
-            <li><a href="{{=URL('default', 'register')}}">Signup</a></li>
-		    <li><a href="{{=URL('default', 'login')}}">Login</a></li>
-		    <li><a href="{{=URL('default', 'info')}}">What's sup?</a></li>
+        <ul id="default" class="st-content">
+            <li class="st-trigger"><a data-effect="st-effect-right">Signup</a></li>
+		    <li class="st-trigger"><a data-effect="st-effect-right">Login</a></li>
+		    <li class="st-trigger"><a data-effect="st-effect-right">What's sup?</a></li>
         </ul>
 
-        <ul id="login" class="st-menu st-effect">
+        <ul id="login" class="st-menu-right st-effect-right">
 			{{=form_login.custom.begin}}
 			{{if form_login.errors:}}
 		    <li>{{=form_login.errors}}</li>
@@ -22,7 +22,7 @@
 			{{=form_login.custom.end}}
         </ul>
 
-        <ul id="register" class="st-menu st-effect">
+        <ul id="register" class="st-menu-right st-effect-right">
             {{=form_register.custom.begin}}
 		    {{if form_register.errors:}}
 		    <li>{{=form_register.errors}}</li>
