@@ -1,23 +1,38 @@
 {{extend 'layout.html'}}
 
-<ul>
-    <li><a href="{{=URL('dashboard', 'settings')}}">Settings</a></li>
-    <li><a href="{{=URL('dashboard', 'logout')}}">Log out</a></li>
-    <li><a href="{{=URL('dashboard', 'invite')}}">Invite</a></li>
-    {{for user in users:}}
-    <li>
-        <a href="/sup/dashboard/index/{{=user.id}}">
-        {{if request.args:}}
-            {{if (user.id == request.args):}}
-                {{=response.flash}}
-            {{else:}}
-                {{=user.username}}
+<div id="st-container" class="st-container">
+
+    <!-- content push wrapper -->
+    <div class="st-pusher">
+
+        <ul class="st-menu st-effect">
+            <li><a href="{{=URL('dashboard', 'settings')}}">Settings</a></li>
+            <li><a href="{{=URL('dashboard', 'logout')}}">Log out</a></li>
+        </ul>
+
+        <ul class="st-content">
+            <li><a href="{{=URL('dashboard', 'invite')}}">Invite</a></li>
+            {{for user in users:}}
+            <li>
+                <a href="/sup/dashboard/index/{{=user.id}}">
+                {{if request.args:}}
+                    {{if (user.id == request.args[0]):}}
+                        {{=response.flash}}
+                    {{else:}}
+                        {{=user.username}}
+                    {{pass}}
+                {{else:}}
+                    {{=user.username}}
+                {{pass}}
+                </a>
+            </li>
             {{pass}}
-        {{else:}}
-            {{=user.username}}
-        {{pass}}
-        </a>
-    </li>
-    {{pass}}
-    <li><a href="{{=URL('dashboard', 'add_friend')}}">+</a></li>
-</ul>
+            <li><a href="{{=URL('dashboard', 'add_friend')}}">+</a></li>
+            <div id="st-trigger-effects" class="pull-right">
+                <button data-effect="st-effect">...</button>
+            </div>
+        </ul>
+
+    </div><!-- /st-pusher -->
+
+</div><!-- /st-container -->
