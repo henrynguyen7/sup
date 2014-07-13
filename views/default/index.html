@@ -6,12 +6,24 @@
     <div class="st-pusher">
 
         <ul id="default" class="st-content">
-            <li class="st-trigger"><a data-effect="st-effect-right">Signup</a></li>
-		    <li class="st-trigger"><a data-effect="st-effect-right">Login</a></li>
-		    <li class="st-trigger"><a data-effect="st-effect-right">What's sup?</a></li>
+            <li class="st-trigger"><a data-effect="st-effect-right-register">Signup</a></li>
+		    <li class="st-trigger"><a data-effect="st-effect-right-login">Login</a></li>
+		    <li class="st-trigger"><a data-effect="st-effect-right-info">What's sup?</a></li>
         </ul>
 
-        <ul id="login" class="st-menu-right st-effect-right">
+        <ul id="register" class="st-menu-right st-effect-right-register">
+            {{=form_register.custom.begin}}
+            {{if form_register.errors:}}
+            <li>{{=form_register.errors}}</li>
+            {{pass}}
+            <li>{{=form_register.custom.widget.username}}</li>
+            <li>{{=form_register.custom.widget.password}}</li>
+            <li>{{=form_register.custom.widget.password_two}}</li>
+            <li>{{=form_register.custom.submit}}</li>
+            {{=form_register.custom.end}}
+        </ul>
+
+        <ul id="login" class="st-menu-right st-effect-right-login">
 			{{=form_login.custom.begin}}
 			{{if form_login.errors:}}
 		    <li>{{=form_login.errors}}</li>
@@ -22,16 +34,9 @@
 			{{=form_login.custom.end}}
         </ul>
 
-        <ul id="register" class="st-menu-right st-effect-right">
-            {{=form_register.custom.begin}}
-		    {{if form_register.errors:}}
-		    <li>{{=form_register.errors}}</li>
-		    {{pass}}
-		    <li>{{=form_register.custom.widget.username}}</li>
-		    <li>{{=form_register.custom.widget.password}}</li>
-		    <li>{{=form_register.custom.widget.password_two}}</li>
-		    <li>{{=form_register.custom.submit}}</li>
-		    {{=form_register.custom.end}}
+        <ul id="info" class="st-menu-right st-effect-right-info">
+            <!-- TODO: Copy Yo's about page here -->
+            <li><a>Nothin' much... what's up with you? :)</a></li>
         </ul>
 
     </div><!-- /st-pusher -->

@@ -210,33 +210,23 @@ a:hover {
 /** EFFECTS
 *=======================================*/
 
-.st-effect-right-register.st-menu-right-register-open .st-pusher {
+.st-effect-right-register.st-menu-right-open .st-pusher,
+.st-effect-right-login.st-menu-right-open .st-pusher,
+.st-effect-right-info.st-menu-right-open .st-pusher {
     -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0);
 }
 
-.st-effect-right-register.st-menu-right-register {
+.st-effect-right-register.st-menu-right,
+.st-effect-right-login.st-menu-right,
+.st-effect-right-info.st-menu-right {
     -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0);
 }
 
-.st-effect-right-register.st-menu-right-register-open .st-effect-right-register.st-menu-right-register {
-    visibility: visible;
-    -webkit-transition: -webkit-transform 0.5s;
-    transition: transform 0.5s;
-}
-
-.st-effect-right.st-menu-right-open .st-pusher {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-}
-
-.st-effect-right.st-menu-right {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-}
-
-.st-effect-right.st-menu-right-open .st-effect-right.st-menu-right {
+.st-effect-right-register.st-menu-right-open .st-effect-right-register.st-menu-right,
+.st-effect-right-login.st-menu-right-open .st-effect-right-login.st-menu-right,
+.st-effect-right-info.st-menu-right-open .st-effect-right-info.st-menu-right {
     visibility: visible;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
