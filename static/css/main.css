@@ -1,3 +1,25 @@
+/** GLOBAL
+*=======================================*/
+
+*,
+*:after,
+*::before {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body,
+.st-container,
+.st-pusher {
+    width: 100%;
+    height: 100vh;
+}
+
+.st-content {
+    height: 100%;
+}
+
 body {
     background-color: rgb(153, 87, 159);
     padding: 0;
@@ -9,6 +31,44 @@ body {
 .container-fluid {
     padding: 0;
     margin: 0;
+}
+
+/** ST-CONTAINER
+*=======================================*/
+
+.st-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.st-pusher {
+    position: relative;
+    left: 0;
+    height: 100%;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+}
+
+.st-pusher::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+    transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+
+/** DASHBOARD LIST
+*=======================================*/
+
+.st-content {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    height: 84vh;
 }
 
 ul {
@@ -24,7 +84,7 @@ li {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
-    margin: .5px;
+    margin-bottom: .5px;
 }
 
 a {
@@ -40,8 +100,80 @@ a:hover {
     text-decoration: none;
 }
 
-/** Form Input
-*****************************************/
+/** DASHBOARD MENU BUTTON
+*=======================================*/
+
+#st-trigger-effects {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 16vh;
+    vertical-align: bottom;
+    text-align: right;
+}
+
+#st-trigger-effects button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+/** MENU
+*=======================================*/
+
+.st-menu-open .st-pusher::after {
+    width: 100%;
+    height: 100%;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+.st-menu {
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.st-menu::after {
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+.st-menu-open .st-menu::after {
+    -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+    transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+
+/** EFFECTS
+*=======================================*/
+
+.st-effect.st-menu-open .st-pusher {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+}
+
+.st-effect.st-menu {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, -100%, 0);
+}
+
+.st-effect.st-menu-open .st-effect.st-menu {
+    visibility: visible;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+}
+
+/** FORM
+*=======================================*/
 
 form {
     padding: 0;
