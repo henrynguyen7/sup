@@ -24,11 +24,6 @@ def index():
     return dict(users=users)
 
 
-@auth.requires_login()
-def settings():
-    return dict(message=None)
-
-
 ##
 ## Utils
 ##
