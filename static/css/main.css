@@ -68,7 +68,8 @@ body {
     overflow: auto;
     top: 0;
     left: 0;
-    height: 84vh;
+    width: 100%;
+    height: 100vh;
 }
 
 ul {
@@ -103,22 +104,18 @@ a:hover {
 /** DASHBOARD MENU BUTTON
 *=======================================*/
 
-#st-trigger-effects {
+#st-trigger-effects button {
+    border-radius: 100%;
+    border-style: none;
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 100%;
-    height: 16vh;
-    vertical-align: bottom;
-    text-align: right;
-}
-
-#st-trigger-effects button {
-    position: relative;
     width: 40px;
     height: 40px;
-    margin-right: 15px;
-    margin-bottom: 15px;
+    margin-right: 24px;
+    margin-bottom: 24px;
+    background-color: red;
+    font-color: white;
 }
 
 /** MENU
