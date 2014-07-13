@@ -8,10 +8,13 @@
         <ul class="st-menu st-effect">
             <li><a href="{{=URL('dashboard', 'settings')}}">Settings</a></li>
             <li><a href="{{=URL('dashboard', 'logout')}}">Log out</a></li>
+            <li id="menu_done"><a>Done</a></li>
         </ul>
 
         <ul class="st-content">
             <li><a href="{{=URL('dashboard', 'invite')}}">Invite</a></li>
+            <li><a>Test</a></li>
+            <li><a>Test</a></li>
             {{for user in users:}}
             <li>
                 <a href="/sup/dashboard/index/{{=user.id}}">

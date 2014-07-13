@@ -54,6 +54,15 @@
         <script type="text/javascript" src="{{=URL('static', 'js/PushNotification.js')}}"></script>
         <script type="text/javascript">
             app.initialize();
+
+            // TODO: There should be a nicer way to do this...
+            var done_button = document.getElementById("menu_done");
+            done_button.onclick = function(){
+                console.log('hello');
+                console.log(classie);
+                var container = document.getElementById('st-container');
+                classie.remove(container, 'st-menu-open');
+            };
         </script>
 
     </body>
