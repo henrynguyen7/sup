@@ -25,7 +25,7 @@ body {
     padding: 0;
     margin: 0;
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 1000;
 }
 
 .container-fluid {
@@ -141,10 +141,10 @@ a:hover {
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 40px;
-    height: 40px;
-    margin-right: 24px;
-    margin-bottom: 24px;
+    width: 60px;
+    height: 60px;
+    margin-right: 18px;
+    margin-bottom: 18px;
     background-color: rgb(232, 74, 53);
     font-color: white;
 }
