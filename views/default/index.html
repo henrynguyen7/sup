@@ -63,4 +63,45 @@
         form.addEventListener("submit", processForm);
     }
 
+    TOTAL_LI_CLASSES = 7; //As listed in main.css "li-#" classes
+
+    // TODO: Cleanup...
+    var defaultUl = document.getElementById("default");
+    var defaultItems = defaultUl.getElementsByTagName("li");
+    var j = 0;
+    for (var i = 0; i < defaultItems.length; ++i) {
+        defaultItems[i].className += " li-" + j;
+        if (j < TOTAL_LI_CLASSES - 1) {
+            j = ++j;
+        } else {
+            j = 0;
+        }
+    }
+
+    // TODO: Cleanup...
+    var loginUl = document.getElementById("login");
+    var loginItems = loginUl.getElementsByTagName("input");
+    var j = 0;
+    for (var i = 0; i < loginItems.length; ++i) {
+        loginItems[i].className += " li-" + j;
+        if (j < TOTAL_LI_CLASSES - 1) {
+            j = ++j;
+        } else {
+            j = 0;
+        }
+    }
+
+    // TODO: Cleanup...
+    var registerUl = document.getElementById("register");
+    var registerItems = registerUl.getElementsByTagName("input");
+    var j = 0;
+    for (var i = 0; i < registerItems.length; ++i) {
+        registerItems[i].className += " li-" + j;
+        if (j < TOTAL_LI_CLASSES - 1) {
+            j = ++j;
+        } else {
+            j = 0;
+        }
+    }
+
 </script>

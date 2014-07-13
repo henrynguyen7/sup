@@ -42,3 +42,42 @@
     </div><!-- /st-pusher -->
 
 </div><!-- /st-container -->
+
+<script type="text/javascript">
+
+    TOTAL_LI_CLASSES = 7; //As listed in main.css "li-#" classes
+
+    // TODO: There should be a nicer way to do this...
+    var done_button = document.getElementById("menu-item-done");
+    done_button.onclick = function(){
+        var container = document.getElementById("st-container-dashboard");
+        classie.remove(container, "st-menu-bottom-open");
+    };
+
+    // TODO: Cleanup...
+    var dashboardUl = document.getElementById("dashboard");
+    var dashboardItems = dashboardUl.getElementsByTagName("li");
+    var j = 0;
+    for (var i = 0; i < dashboardItems.length; ++i) {
+        dashboardItems[i].className += " li-" + j;
+        if (j < TOTAL_LI_CLASSES - 1) {
+            j = ++j;
+        } else {
+            j = 0;
+        }
+    }
+
+    // TODO: Cleanup...
+    var menuUl = document.getElementById("menu");
+    var menuItems = menuUl.getElementsByTagName("li");
+    var j = 0;
+    for (var i = 0; i < menuItems.length; ++i) {
+        menuItems[i].className += " li-" + j;
+        if (j < TOTAL_LI_CLASSES - 1) {
+            j = ++j;
+        } else {
+            j = 0;
+        }
+    }
+
+</script>

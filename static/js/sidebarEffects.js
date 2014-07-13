@@ -28,12 +28,12 @@
 	function init() {
 
 		// TODO: Cleanup...
-		var containerDefault = document.getElementById( 'st-container-default' ),
-			buttonsDefault = Array.prototype.slice.call( document.querySelectorAll( '.st-trigger > a' ) ),
+		var defaultContainer = document.getElementById( 'st-container-default' ),
+			defaultButtons = Array.prototype.slice.call( document.querySelectorAll( '.st-trigger > a' ) ),
 			// event type (if mobile use touch events)
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
 			resetMenu = function() {
-				classie.remove( containerDefault, 'st-menu-right-open' );
+				classie.remove( defaultContainer, 'st-menu-right-open' );
 			},
 			bodyClickFn = function(evt) {
 				if( !hasParentClass( evt.target, 'st-menu-right' ) ) {
@@ -42,28 +42,28 @@
 				}
 			};
 
-		buttonsDefault.forEach( function( el, i ) {
+		defaultButtons.forEach( function( el, i ) {
 			var effect = el.getAttribute( 'data-effect' );
 
 			el.addEventListener( eventtype, function( ev ) {
 				ev.stopPropagation();
 				ev.preventDefault();
-				containerDefault.className = 'st-container'; // clear
-				classie.add( containerDefault, effect );
+				defaultContainer.className = 'st-container'; // clear
+				classie.add( defaultContainer, effect );
 				setTimeout( function() {
-					classie.add( containerDefault, 'st-menu-right-open' );
+					classie.add( defaultContainer, 'st-menu-right-open' );
 				}, 25 );
 				document.addEventListener( eventtype, bodyClickFn );
 			});
 		} );
 
 		// TODO: Cleanup...
-		var containerDashboard = document.getElementById( 'st-container-dashboard' ),
-			buttonsDashboard = Array.prototype.slice.call( document.querySelectorAll( '.st-trigger > button' ) ),
+		var dashboardContainer = document.getElementById( 'st-container-dashboard' ),
+			dashboardButtons = Array.prototype.slice.call( document.querySelectorAll( '.st-trigger > button' ) ),
 			// event type (if mobile use touch events)
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
 			resetMenu = function() {
-				classie.remove( containerDashboard, 'st-menu-bottom-open' );
+				classie.remove( dashboardContainer, 'st-menu-bottom-open' );
 			},
 			bodyClickFn = function(evt) {
 				if( !hasParentClass( evt.target, 'st-menu-bottom' ) ) {
@@ -72,16 +72,16 @@
 				}
 			};
 
-		buttonsDashboard.forEach( function( el, i ) {
+		dashboardButtons.forEach( function( el, i ) {
 			var effect = el.getAttribute( 'data-effect' );
 
 			el.addEventListener( eventtype, function( ev ) {
 				ev.stopPropagation();
 				ev.preventDefault();
-				containerDashboard.className = 'st-container'; // clear
-				classie.add( containerDashboard, effect );
+				dashboardContainer.className = 'st-container'; // clear
+				classie.add( dashboardContainer, effect );
 				setTimeout( function() {
-					classie.add( containerDashboard, 'st-menu-bottom-open' );
+					classie.add( dashboardContainer, 'st-menu-bottom-open' );
 				}, 25 );
 				document.addEventListener( eventtype, bodyClickFn );
 			});
