@@ -38,6 +38,28 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent("deviceready");
+
+        // Overrides Android back button to revert menu if menu is present, else exit
+        document.addEventListener("backbutton", function(e) {
+
+            if (document.getElementById("st-container-default")) {
+                if (document.getElementById("st-container-default").className.indexOf("st-menu-right-open") > -1) {
+                    var defaultContainer = document.getElementById("st-container-default");
+                    classie.remove(defaultContainer, "st-menu-right-open");
+                } else {
+                    e.preventDefault();
+                    navigator.app.exitApp();
+                }
+            } else if (document.getElementById("st-container-dashboard")) {
+                if (document.getElementById("st-container-dashboard").className.indexOf("st-menu-bottom-open") > -1) {
+                    var dashboardContainer = document.getElementById("st-container-dashboard");
+                    classie.remove(dashboardContainer, "st-menu-bottom-open");
+                } else {
+                    e.preventDefault();
+                    navigator.app.exitApp();
+                }
+            }
+        }, false);
     },
     onLoginPage: function() {
 
