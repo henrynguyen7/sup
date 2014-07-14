@@ -42,15 +42,15 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
         <!-- SIDEBAR EFFECTS ================================================== -->
-        <script type="text/javascript" src="{{=URL('static', 'js/sidebarEffects.js')}}"></script>
         <script type="text/javascript" src="{{=URL('static', 'js/classie.js')}}"></script>
+        <script type="text/javascript" src="{{=URL('static', 'js/sidebarEffects.js')}}"></script>
 
         <!-- PHONEGAP ================================================== -->
         <script type="text/javascript" src="{{=URL('static', 'js/android/cordova.js')}}"></script>
+        <script type="text/javascript" src="{{=URL('static', 'js/android/plugins/org.apache.cordova.device/www/device.js')}}"></script>
+        <script type="text/javascript" src="{{=URL('static', 'js/android/plugins/me.apla.cordova.app-preferences/www/apppreferences.js')}}"></script>
+        <script type="text/javascript" src="{{=URL('static', 'js/android/plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js')}}"></script>
         <script type="text/javascript" src="{{=URL('static', 'js/index.js')}}"></script>
-        <script type="text/javascript" src="{{=URL('static', 'js/device.js')}}"></script>
-        <script type="text/javascript" src="{{=URL('static', 'js/apppreferences.js')}}"></script>
-        <script type="text/javascript" src="{{=URL('static', 'js/PushNotification.js')}}"></script>
         <script type="text/javascript">
             app.initialize();
         </script>
