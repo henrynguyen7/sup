@@ -5,10 +5,6 @@
     <!-- content push wrapper -->
     <div class="st-pusher">
 
-        <div class="st-trigger">
-            <button class="pull-right" data-effect="st-effect-bottom">...</button>
-        </div>
-
         <ul id="dashboard" class="st-content">
             <li><a>Invite</a></li>
             {{for user in users:}}
@@ -28,6 +24,10 @@
             {{pass}}
             <li><a>+</a></li>
         </ul>
+
+        <div class="st-trigger">
+            <button data-effect="st-effect-bottom">...</button>
+        </div>
 
         <ul id="menu" class="st-menu-bottom st-effect-bottom">
             <li><a>User:{{=auth.user.username}}</a></li>
