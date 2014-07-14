@@ -93,6 +93,28 @@ body {
     background-color: rgb(42, 129, 184);
 }
 
+/** DEFAULT FORMS
+*=======================================*/
+
+input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-image: none;
+    background-attachment: none;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 5vh;
+    text-decoration: none;
+    color: white;
+    display: block;
+    text-transform: uppercase;
+}
+
+input::-webkit-input-placeholder {
+    color: white;
+}
+
 /** DASHBOARD LIST
 *=======================================*/
 
