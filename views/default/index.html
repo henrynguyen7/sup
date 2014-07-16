@@ -36,7 +36,11 @@
 
         <ul id="info" class="st-menu-right st-effect-right-info">
             <!-- TODO: Copy Yo's about page here -->
-            <li><a>Nothin' much... what's up with you? :)</a></li>
+            <li><a>What's Sup?</a></li>
+            <li><a></a></li>
+            <li><a href="{{=URL('default', 'terms')}}">Terms of Use</a></li>
+            <li><a href="{{=URL('default', 'privacy')}}">Privacy</a></li>
+            <li id="default-info-done"><a>Done</a></li>
         </ul>
 
     </div><!-- /st-pusher -->
@@ -54,6 +58,13 @@
 
         return false; // Must return false to prevent the default form behavior
     }
+
+    // TODO: There should be a nicer way to do this...
+    var info_done_button = document.getElementById("default-info-done");
+    info_done_button.onclick = function(){
+        var container = document.getElementById("st-container-default");
+        classie.remove(container, "st-menu-right-open");
+    };
 
     var form = document.getElementById("form_registration");
 
@@ -97,6 +108,19 @@
     var j = 0;
     for (var i = 0; i < registerItems.length; ++i) {
         registerItems[i].className += " li-" + j;
+        if (j < TOTAL_LI_CLASSES - 1) {
+            j = ++j;
+        } else {
+            j = 0;
+        }
+    }
+
+    // TODO: Cleanup...
+    var infoUl = document.getElementById("info");
+    var infoItems = infoUl.getElementsByTagName("li");
+    var j = 0;
+    for (var i = 0; i < infoItems.length; ++i) {
+        infoItems[i].className += " li-" + j;
         if (j < TOTAL_LI_CLASSES - 1) {
             j = ++j;
         } else {

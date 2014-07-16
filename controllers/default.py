@@ -47,3 +47,11 @@ def index():
 
 def user():
     redirect(URL('index'))
+
+
+def terms():
+    return dict(content=None)
+
+
+def privacy():
+    return dict(content=None)
