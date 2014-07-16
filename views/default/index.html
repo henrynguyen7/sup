@@ -16,8 +16,9 @@
             {{if form_register.errors:}}
             <li>{{=form_register.errors}}</li>
             {{pass}}
+            {{form_register.custom.widget.username.placeholder = 'CHOOSE USERNAME'}}
             <li>{{=form_register.custom.widget.username}}</li>
-            <li>{{=form_register.custom.widget.password}}</li>
+            <li id="form_register_password">{{=form_register.custom.widget.password}}</li>
             <li>{{=form_register.custom.submit}}</li>
             {{=form_register.custom.end}}
         </ul>
@@ -28,7 +29,7 @@
 		    <li>{{=form_login.errors}}</li>
 		    {{pass}}
 			<li>{{=form_login.custom.widget.username}}</li>
-			<li>{{=form_login.custom.widget.password}}</li>
+			<li id="form_login_password">{{=form_login.custom.widget.password}}</li>
 			<li>{{=form_login.custom.submit}}</li>
 			{{=form_login.custom.end}}
         </ul>

@@ -96,6 +96,11 @@ body {
 /** DEFAULT FORMS
 *=======================================*/
 
+#form_register_password input,
+#form_login_password input {
+    text-transform: none;
+}
+
 input {
     width: 100%;
     height: 100%;
