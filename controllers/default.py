@@ -25,19 +25,19 @@ def index():
     auth.settings.login_onaccept = login_onaccept
     auth.settings.register_onaccept = register_onaccept
 
-    # Manually define widget so we can define the placeholder text
-    db.auth_user.username.widget = lambda f,v: SQLFORM.widgets.string.widget(f, v, _placeholder='Username')
-    db.auth_user.password.widget = lambda f,v: SQLFORM.widgets.string.widget(f, v, _placeholder='Password')
-
     form_login = auth()
     # Two lines below are so we can select it with Javascript
     form_login['_id'] = 'form_login'
     form_login.custom.begin = XML("<" + form_login.tag + " " + form_login._xml()[0] +">")
+    form_login.custom.widget.username['_placeholder'] = "USERNAME"
+    form_login.custom.widget.password['_placeholder'] = "PASSWORD"
 
     form_register = auth.register()
     # Two lines below are so we can select it with Javascript
     form_register['_id'] = 'form_registration'
     form_register.custom.begin = XML("<" + form_register.tag + " " + form_register._xml()[0] +">")
+    form_register.custom.widget.username['_placeholder'] = "CHOOSE USERNAME"
+    form_register.custom.widget.password['_placeholder'] = "CHOOSE PASSWORD"
 
     return dict(
         form_login=form_login,
