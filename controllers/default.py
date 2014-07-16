@@ -39,7 +39,6 @@ def index():
     form_register['_id'] = 'form_registration'
     form_register.custom.begin = XML("<" + form_register.tag + " " + form_register._xml()[0] +">")
 
-
     return dict(
         form_login=form_login,
         form_register=form_register,

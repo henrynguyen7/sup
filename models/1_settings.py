@@ -31,6 +31,7 @@ response.generic_patterns = ['*'] if request.is_local else []
 ###
 ### Auth customizations
 ###
+auth.settings.register_verify_password = False
 auth.settings.password_min_length = 8
 auth.settings.create_user_groups = False
 auth.settings.login_next = URL('dashboard', 'index')
