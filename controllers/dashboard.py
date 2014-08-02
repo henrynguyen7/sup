@@ -18,10 +18,15 @@ def index():
     users = db(db.auth_user.device_platform != None).select()
     if request.args:
         result = Utils.send_sup(request.args[0])
-        db(db.auth_user.id == request.args[0]).update(sup_count=db.auth_user.sup_count+1) # Increment user's sup_count
-        response.flash = 'Sup sent to ' + Utils.get_user(auth_user_id=request.args[0]).get('username') + '!'
 
     return dict(users=users)
+
+
+@auth.requires_login()
+def add_friend():
+    if request.args:
+        result = Utils.make_friends(auth.user.id, request.args[0])
+    return dict(reslt=result) if result else None
 
 
 ##
@@ -35,10 +40,17 @@ class Utils(object):
         user = db(query).select().first()
         return user.as_dict() if user else None
 
+
+    @staticmethod
+    def make_friends(auth_user_id_1, auth_user_id_2):
+        db.friends.insert(auth_user_id_1=auth_user_id_1, auth_user_id_2=auth_user_id_2)
+
+
     @staticmethod
     def send_sup(recipient_auth_user_id):
 
         recipient = Utils.get_user(auth_user_id=recipient_auth_user_id)
+        db(db.auth_user.id == recipient_auth_user_id).update(sup_count=db.auth_user.sup_count+1) # Increment user's sup_count
 
         if recipient.get('device_platform') == 'Android':
 

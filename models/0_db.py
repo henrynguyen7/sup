@@ -89,21 +89,18 @@ db.define_table(
 )
 db.system_settings.id.readable = db.system_settings.id.writable = False
 
-
 db.define_table(
-    'user_settings',
-    Field('auth_user_id', 'reference auth_user', readable=False, writable=False),
-    Field('created_on', 'datetime', notnull=True, uploadfield=False, readable=False, writable=False, default=request.now),
-    Field('updated_on', 'datetime', notnull=True, uploadfield=False, readable=False, writable=False, default=request.now, update=request.now)
-)
-db.user_settings.id.readable = db.user_settings.id.writable = False
-
-
-db.define_table(
-    'contact',
+    'contacts',
     Field('auth_user_id', 'reference auth_user', readable=False, writable=False),
     Field('name', 'string', readable=False, writable=False),
     Field('created_on', 'datetime', notnull=True, uploadfield=False, readable=False, writable=False, default=request.now),
     Field('updated_on', 'datetime', notnull=True, uploadfield=False, readable=False, writable=False, default=request.now, update=request.now)
 )
-db.contact.id.readable = db.contact.id.writable = False
+db.contacts.id.readable = db.contacts.id.writable = False
+
+db.define_table(
+    'friends',
+    Field('auth_user_id_1', 'reference auth_user', readable=False, writable=False),
+    Field('auth_user_id_2', 'reference auth_user', readable=False, writable=False),
+)
+db.friends.id.readable = db.friends.id.writable = False
